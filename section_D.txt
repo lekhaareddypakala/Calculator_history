@@ -1,0 +1,96 @@
+16 . Steps to clean healthcare data before analysis
+====================================================
+
+* Data cleaning is an important step before analysis. The main steps include:
+
+* Load the dataset using pandas.
+
+* Check missing values using isnull() or info().
+
+* Handle missing values by filling them or removing rows.
+
+* Remove duplicate records using drop_duplicates().
+
+* Fix incorrect data formats such as date or numeric values.
+
+* Detect outliers using boxplots or statistical methods.
+
+* Convert categorical variables into numerical format if required.
+
+* Normalize or standardize numerical data if needed.
+
+
+17. Handling categorical variables like Gender or Diabetes in pandas
+=====================================================================
+
+Categorical variables must be converted into numerical format for analysis or machine learning.
+
+Two common methods are:
+
+1. Label Encoding
+==================
+
+Each category is assigned a numeric value.
+
+df['Gender'] = df['Gender'].map({'Male':0, 'Female':1})
+
+2. One-Hot Encoding
+====================
+
+Creates separate columns for each category.
+
+df = pd.get_dummies(df, columns=['Gender','Diabetes'])
+
+
+18. Detecting and visualizing outliers in treatment cost
+=========================================================
+
+Outliers are extremely high or low values that differ from the rest of the dataset.
+
+Visualization using Box Plot
+============================
+
+import seaborn as sns
+
+sns.boxplot(x=df['Treatment_Cost'])
+
+plt.title("Outliers in Treatment Cost")
+plt.show()
+
+Statistical method 
+===================
+
+Q1 = df['Treatment_Cost'].quantile(0.25)
+Q3 = df['Treatment_Cost'].quantile(0.75)
+
+IQR = Q3 - Q1
+
+outliers = df[(df['Treatment_Cost'] < Q1 - 1.5*IQR) |
+              (df['Treatment_Cost'] > Q3 + 1.5*IQR)]
+
+
+19. Difference between .loc[] and .iloc[] in pandas
+====================================================
+
+.loc[]                                                   .iloc[]
+* Can be accesed based on labels                       * can be accesed based on integer position
+
+* It can use rows/column names                         * It doesn't uses rows and columns
+
+* It doesn't use index  numbers                        * It uses index numbers
+
+df.loc[0,'Age']                                          df.iloc[0,2]
+
+
+20. Best visualization for relationship between cholesterol level and blood pressure
+=====================================================================================
+
+The best visualization is a scatter plot.
+
+Reason:
+=======
+-> Both variables are numerical.
+
+-> Scatter plots show correlation and trends.
+
+-> They help identify clusters and outliers.
