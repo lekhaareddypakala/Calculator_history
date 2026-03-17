@@ -1,2 +1,2 @@
-# health_care_data_analysis
-Healthcare data analysis project using Python libraries
+/ Calculator_history and fake news generator
+Basic projects for beginners having fundamnetals in python
